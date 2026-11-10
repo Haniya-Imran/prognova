@@ -1,9 +1,9 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { RoundedBox, Sparkles, Stars } from '@react-three/drei'
+import { RoundedBox, Sparkles } from '@react-three/drei'
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 
-// Heights are the real monthly net revenue of the demo dataset (Dec 2009 – Nov 2011),
+// Daylight sky scene. Heights are the real monthly net revenue of the demo dataset (Dec 2009 – Nov 2011),
 // scaled to the largest value; the three amber towers are the model's real forecast
 // for Dec 2011 – Feb 2012, with a ghost column for the top of the 80% range.
 const HISTORY = [0.545, 0.424, 0.368, 0.527, 0.446, 0.425, 0.47, 0.432, 0.464, 0.59, 0.749, 0.977, 0.812, 0.406, 0.35, 0.476, 0.338, 0.512, 0.507, 0.474, 0.491, 0.709, 0.744, 1.0]
@@ -28,7 +28,7 @@ function Tower({ x, h, color, glow, delay, ghost }: { x: number; h: number; colo
         {Array.from({ length: Math.floor(h / 0.32) }).map((_, i) => (
           <mesh key={i} position={[0, 0.2 + i * 0.32, 0.172]}>
             <planeGeometry args={[0.2, 0.05]} />
-            <meshBasicMaterial color="#e9fffb" transparent opacity={0.22 + ((i * 7) % 5) * 0.08} />
+            <meshBasicMaterial color="#ffffff" transparent opacity={0.35 + ((i * 7) % 5) * 0.08} />
           </mesh>
         ))}
       </group>
@@ -61,17 +61,17 @@ function Skyline() {
   return (
     <group ref={group} position={[1.7, -2.3, -1]} scale={0.72}>
       {HISTORY.map((v, i) => (
-        <Tower key={i} x={x0 + i * STEP} h={v * H} color={i % 12 === 10 || i % 12 === 11 ? '#3ff0d2' : '#1fb7a0'} glow={0.28} delay={0.15 + i * 0.035} />
+        <Tower key={i} x={x0 + i * STEP} h={v * H} color={i % 12 === 10 || i % 12 === 11 ? '#1f8fd8' : '#5aaee6'} glow={0.12} delay={0.15 + i * 0.035} />
       ))}
       {FORECAST.map((f, i) => (
-        <Tower key={`f${i}`} x={x0 + (HISTORY.length + i) * STEP} h={f.v * H} ghost={f.hi * H} color="#ffb547" glow={0.65} delay={1.2 + i * 0.12} />
+        <Tower key={`f${i}`} x={x0 + (HISTORY.length + i) * STEP} h={f.v * H} ghost={f.hi * H} color="#f0a020" glow={0.35} delay={1.2 + i * 0.12} />
       ))}
-      <mesh geometry={curve}><meshBasicMaterial color="#ffd38a" /></mesh>
+      <mesh geometry={curve}><meshBasicMaterial color="#e08a00" /></mesh>
       {/* glowing floor grid */}
-      <gridHelper args={[26, 52, '#2ee6c8', '#1a2a4d']} position={[0, 0.001, 0]} />
+      <gridHelper args={[26, 52, '#7fb6e6', '#c9dcf2']} position={[0, 0.001, 0]} />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
         <circleGeometry args={[9, 64]} />
-        <meshBasicMaterial color="#2ee6c8" transparent opacity={0.05} />
+        <meshBasicMaterial color="#1f8fd8" transparent opacity={0.06} />
       </mesh>
     </group>
   )
@@ -85,8 +85,8 @@ function Nova() {
   })
   return (
     <group ref={ref}>
-      <mesh><sphereGeometry args={[0.12, 24, 24]} /><meshBasicMaterial color="#fff3d6" /></mesh>
-      <pointLight color="#ffb547" intensity={14} distance={9} />
+      <mesh><sphereGeometry args={[0.22, 32, 32]} /><meshBasicMaterial color="#ffc94d" /></mesh>
+      <pointLight color="#ffd27a" intensity={10} distance={9} />
     </group>
   )
 }
@@ -94,12 +94,11 @@ function Nova() {
 export default function Hero3D() {
   return (
     <Canvas camera={{ position: [0, 1.8, 12.5], fov: 40 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true }} aria-hidden>
-      <fog attach="fog" args={['#1c2847', 11, 26]} />
-      <ambientLight intensity={0.45} />
+      <fog attach="fog" args={['#e9f1fb', 13, 30]} />
+      <ambientLight intensity={0.9} />
       <directionalLight position={[6, 9, 6]} intensity={1.2} color="#cfe9ff" />
-      <directionalLight position={[-8, 3, -4]} intensity={0.8} color="#8f7bff" />
-      <Stars radius={60} depth={30} count={2200} factor={3} saturation={0} fade speed={0.6} />
-      <Sparkles count={60} scale={[16, 6, 6]} position={[0, 1, 0]} size={2.2} speed={0.3} color="#2ee6c8" opacity={0.6} />
+      <directionalLight position={[-8, 3, -4]} intensity={0.5} color="#9cc9ef" />
+      <Sparkles count={60} scale={[16, 6, 6]} position={[0, 1, 0]} size={2.2} speed={0.3} color="#1f8fd8" opacity={0.5} />
       <Skyline />
       <Nova />
     </Canvas>

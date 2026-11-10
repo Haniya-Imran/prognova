@@ -117,7 +117,7 @@ export default function Dashboard() {
                 <Chart ariaLabel="Revenue by month for each year" height={300} data={d.year_overlay.map((y: any, i: number) => ({ type: 'scatter', mode: 'lines+markers', name: String(y.year), x: MONTHS, y: y.values, line: { color: P[i % 6], width: 2 }, connectgaps: false, hovertemplate: `${y.year} %{x}: ${cur}%{y:,.0f}<extra></extra>` }))}
                   layout={{ yaxis: { tickprefix: cur } }} /></Card>}
               {d.heatmap && <Card title={d.heatmap.kind === 'weekday_hour' ? 'When sales happen' : 'Weekday × month'} sub="Darker = more revenue.">
-                <Chart ariaLabel="Revenue heatmap" height={300} data={[{ type: 'heatmap', x: d.heatmap.x, y: d.heatmap.y, z: d.heatmap.z, colorscale: [[0, '#26355b'], [0.5, alpha(P[0], .5)], [1, P[0]]], hovertemplate: `%{y} %{x}<br>${cur}%{z:,.0f}<extra></extra>`, showscale: false }]}
+                <Chart ariaLabel="Revenue heatmap" height={300} data={[{ type: 'heatmap', x: d.heatmap.x, y: d.heatmap.y, z: d.heatmap.z, colorscale: [[0, '#f1f6fd'], [0.5, alpha(P[0], .55)], [1, '#156bb0']], hovertemplate: `%{y} %{x}<br>${cur}%{z:,.0f}<extra></extra>`, showscale: false }]}
                   layout={{ yaxis: { autorange: 'reversed' }, xaxis: { title: { text: d.heatmap.x_title } } }} /></Card>}
               {d.pareto && <Card title="Revenue concentration" info="A Pareto curve: how much revenue comes from the best-selling share of products."
                 sub={`Top 20% of products bring ${d.pareto.top20_share_pct}% of revenue; ${num(d.pareto.products_for_80pct)} of ${num(d.pareto.products)} products make 80%.`}>

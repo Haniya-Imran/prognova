@@ -18,7 +18,7 @@ export function alpha(hex: string, a: number) {
 }
 
 export function palette() {
-  return [1, 2, 3, 4, 5, 6].map((i) => cssVar(`--c${i}`, '#2ee6c8'))
+  return [1, 2, 3, 4, 5, 6].map((i) => cssVar(`--c${i}`, '#1f8fd8'))
 }
 
 function useTheme() {
@@ -48,7 +48,7 @@ export function Chart({ data, layout = {}, height = 340, ariaLabel, onClick, con
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: t.font, color: t.ink, size: 12 },
-    hoverlabel: { font: { family: t.font, color: '#eaf0ff' }, bgcolor: '#2f4069', bordercolor: 'rgba(46,230,200,.45)' },
+    hoverlabel: { font: { family: t.font, color: '#eaf0ff' }, bgcolor: '#1d2b4f', bordercolor: '#1d2b4f' },
     legend: { orientation: 'h', y: -0.18, x: 0, font: { color: t.muted } },
     colorway: palette(),
     ...layout,

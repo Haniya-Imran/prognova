@@ -70,7 +70,7 @@ export default function Landing() {
           <div className="hero-cards" aria-label="Demo data results">
             <div className="glass gc-1"><span>Next 3 months (demo data)</span><b>£2.24M</b><small>80% range £1.81M – £2.66M</small></div>
             <div className="glass gc-2"><span>Backtest error</span><b>10.6%</b><small>WAPE over 7 rolling windows</small></div>
-            <div className="glass gc-3"><span>Teal towers</span><b>24 real months</b><small>Amber = forecast · ghost = upper range</small></div>
+            <div className="glass gc-3"><span>Blue towers</span><b>24 real months</b><small>Amber = forecast · ghost = upper range</small></div>
           </div>
         </div>
       </section>

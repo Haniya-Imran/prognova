@@ -94,7 +94,7 @@ function Nova() {
 export default function Hero3D() {
   return (
     <Canvas camera={{ position: [0, 1.8, 12.5], fov: 40 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true }} aria-hidden>
-      <fog attach="fog" args={['#060a16', 11, 26]} />
+      <fog attach="fog" args={['#1c2847', 11, 26]} />
       <ambientLight intensity={0.45} />
       <directionalLight position={[6, 9, 6]} intensity={1.2} color="#cfe9ff" />
       <directionalLight position={[-8, 3, -4]} intensity={0.8} color="#8f7bff" />

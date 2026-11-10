@@ -184,7 +184,7 @@ export default function Eda() {
       {tab === 'corr' && (e.correlation ? (
         <Card title="How order measures move together" sub={e.correlation.note}>
           <Chart ariaLabel="Correlation heatmap" height={420} data={[{ type: 'heatmap', x: e.correlation.labels, y: e.correlation.labels, z: e.correlation.spearman, zmin: -1, zmax: 1,
-            colorscale: [[0, P[3]], [0.5, '#121c36'], [1, P[0]]], text: e.correlation.spearman.map((r: number[]) => r.map((v) => v.toFixed(2))), texttemplate: '%{text}', hovertemplate: '%{y} vs %{x}: %{z:.2f}<extra></extra>' }]}
+            colorscale: [[0, P[3]], [0.5, '#2f4069'], [1, P[0]]], text: e.correlation.spearman.map((r: number[]) => r.map((v) => v.toFixed(2))), texttemplate: '%{text}', hovertemplate: '%{y} vs %{x}: %{z:.2f}<extra></extra>' }]}
             layout={{ margin: { l: 110, r: 20, t: 10, b: 80 } }} />
         </Card>) : <Empty title="Not enough numeric columns for correlation" />)}
 
